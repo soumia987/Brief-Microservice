@@ -1,11 +1,11 @@
 import mongoose from 'mongoose';
-
+// schema de sous competence
 const subCompetenceSchema = new mongoose.Schema({
-
   code: {
     type: String,
     required: true,
     trim: true,
+    uppercase: true
   },
   name: {
     type: String,
@@ -18,6 +18,8 @@ const subCompetenceSchema = new mongoose.Schema({
   }
 }, { _id: false });
 
+// schema de competence
+
 const competenceSchema = new mongoose.Schema({
   code: {
     type: String,
@@ -25,7 +27,6 @@ const competenceSchema = new mongoose.Schema({
     unique: true,
     trim: true,
     uppercase: true,
-    match: /^C[1-8]$/
   },
   name: {
     type: String,
@@ -37,7 +38,7 @@ const competenceSchema = new mongoose.Schema({
     required: true,
     validate: {
       validator: (v) => Array.isArray(v) && v.length > 0,
-      message: 'Au moins une sous-compétence est requise'
+      message: 'Au moins une sous-competence est requise'
     }
   }
 });
